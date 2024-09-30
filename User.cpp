@@ -11,6 +11,7 @@ User::User(std::string username, std::string email, std::string password, std::s
         username(username), email(email), password(password), bio(bio), profilePicture(profilePicture){
 }
 
+//displays user profile info
 string User::displayProfile(){
     cout << User::username << "\nEmail: " << User::email << "\nBio: " << User::bio
     << "\nProfile Picture: " << User::profilePicture << endl;

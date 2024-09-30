@@ -1,10 +1,15 @@
+//TODO: WORKING ON
+
 // TO DO: Implementation of Instagram340 functions
 #include <iostream>
 #include <string>
 #include "Instagram340.h"
+#include "LinkedBagDS/LinkedBag.h"
 
-Instagram340::Instagram340(){
-	// TO DO: implement constructor
+using namespace std;
+
+Instagram340::Instagram340()
+    :users(){
 }
 
 Instagram340::~Instagram340(){

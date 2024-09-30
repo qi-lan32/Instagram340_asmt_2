@@ -8,10 +8,36 @@
 #include "Node.h"
 #include <cstddef>
 
+//TODO: complete for now
 
 // Assignment 2 functions -------------------------------------------
 // TO DO: implement the two functions here
+//appending element to end of list
+template<class ItemType>
+bool LinkedBag<ItemType>::append(const ItemType& newEntry){
+    Node<ItemType>* curr = headPtr;
+    Node<ItemType>* nextNode = new Node<ItemType>();    //new node storing newEntry
+    nextNode ->setItem(newEntry);
 
+    //find the last node of the linkedBag
+    while(curr->getNext() != nullptr){
+        curr = curr->getNext();
+    }
+    curr->setNext(nextNode);   //set last node to point to newEntry
+    itemCount++;
+}   // end append
+
+template<class ItemType>
+Node<ItemType>* LinkedBag<ItemType>::findKthItem(const int& indexK) const{
+    int counter = 0;
+    Node<ItemType>* curr = headPtr;
+    //loop until we arrive at the node at indexK
+    while(counter != indexK){
+        curr = curr->getNext();
+        counter++;
+    }
+    return curr;
+}   // end findKthItem
 // ------------------------------------------------------------------
 
 template<class ItemType>

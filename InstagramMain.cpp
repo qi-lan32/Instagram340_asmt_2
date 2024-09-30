@@ -6,7 +6,12 @@
 #include "Instagram340.cpp"
 #include "User.h"
 #include "User.cpp"
-
+#include "Post.h"
+#include "Post.cpp"
+#include "Reel.h"
+#include "Reel.cpp"
+#include "Story.h"
+#include "Story.cpp"
 
 using namespace std;
 
