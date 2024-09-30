@@ -1,9 +1,9 @@
 Classes:
-  - instagram340 -- working
+  - instagram340 -- working ON
   - instagramMain  -- incomplete
   - post  -- DEB
   - story -- DEB
   - reel -- DEB
-  - linkedBagDS --incomplete
+  - linkedBagDS -- DEB
   - user -- DEB
 
