@@ -5,4 +5,5 @@ Classes:
   - story -- DEB
   - reel -- DEB
   - linkedBagDS --incomplete
+  - user -- DEB
 
