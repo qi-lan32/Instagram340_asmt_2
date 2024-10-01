@@ -14,12 +14,12 @@ protected:
 public:
     //constructors and destructor
     Post();
-    Post(const std::string& title);
+    explicit Post(const std::string& title);
     ~Post();
     //allows comparison of two posts based on their title
     bool operator==(const Post& otherPost) const;
     //prints out edit message
-    virtual void editMSG() const;
+    virtual void editMsg() const;
 };
 
 #endif

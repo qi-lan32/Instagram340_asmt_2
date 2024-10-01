@@ -19,12 +19,17 @@ bool LinkedBag<ItemType>::append(const ItemType& newEntry){
     Node<ItemType>* nextNode = new Node<ItemType>();    //new node storing newEntry
     nextNode ->setItem(newEntry);
 
-    //find the last node of the linkedBag
-    while(curr->getNext() != nullptr){
-        curr = curr->getNext();
+    if(headPtr == nullptr){
+        headPtr = nextNode;
+    }else{
+        //find the last node of the linkedBag
+        while(curr->getNext() != nullptr){
+            curr = curr->getNext();
+        }
+        curr->setNext(nextNode);   //set last node to point to newEntry
     }
-    curr->setNext(nextNode);   //set last node to point to newEntry
     itemCount++;
+    return true;
 }   // end append
 
 template<class ItemType>

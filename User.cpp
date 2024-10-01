@@ -12,7 +12,7 @@ User::User(std::string username, std::string email, std::string password, std::s
 }
 
 //displays user profile info
-string User::displayProfile(){
+void User::displayProfile() const{
     cout << User::username << "\nEmail: " << User::email << "\nBio: " << User::bio
     << "\nProfile Picture: " << User::profilePicture << endl;
 }

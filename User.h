@@ -14,7 +14,7 @@
             User(std::string username, std::string email, std::string password, std::string bio, std::string profilePicture);
 
         //print out profile of user
-            std::string displayProfile();
+            void displayProfile() const;
             // Operator == overloading function prototype:
             bool operator==(const User& otherUser) const;
 

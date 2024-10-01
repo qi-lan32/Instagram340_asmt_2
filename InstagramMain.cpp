@@ -40,7 +40,7 @@ void displayUserManu(User& user){
 		switch (userChoice) {
 			case 1:{
 				// TO DO: display user's profile information
-				//      : e.g. user.displayProfile();
+				user.displayProfile();
 				break;
 			}
 			case 2: {
@@ -94,20 +94,25 @@ void displayUserManu(User& user){
 int main(){
 	// Instantiating the program using the default constructor
 	// With this implementation, the application will only have one user
-	Instagram340 instagram; 
+	Instagram340 instagram;
+    string username;
 
 	cout << "\n Welcome to Instagram340:" << endl;
 	// TO DO: Ask the user to enter their information 
 	//        Instantiate a new User object
+    cout << "Please enter your username: " << endl;
+    cin >> username;
 
 
 	// call instagram createUser function 
 	// replace /*...*/ with the right parameters
-	instagram.createUser(/*...*/);
+	instagram.createUser("username","@email.com", "password","this is my bio.", "this is my profilepic.");
+
 
 	// Retrieve the user 
 	User currentUser = instagram.getUser(0);
-	displayUserManu(currentUser);
+    currentUser.displayProfile();
+//	displayUserManu(currentUser);
 				
 	return 0;
 }

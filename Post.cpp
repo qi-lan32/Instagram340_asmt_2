@@ -24,7 +24,7 @@ bool Post::operator==(const Post& otherPost) const {
 }
 
 //print out edit message when user edits
-void Post::editMSG() const {
+void Post::editMsg() const {
     cout << "You have edited your post \"" << Post::title << "\"" << endl;
 }
 

@@ -6,8 +6,8 @@
 
 //CONSTRUCTORS
 Reel::Reel(){Reel::durationLimit = 90;}
-Reel::Reel(const std::string& title, const int& timeStamp):
-    Post(title, timeStamp){
+Reel::Reel(const std::string& title):
+    Post(title){
         Reel::durationLimit = 90;
 }
 
