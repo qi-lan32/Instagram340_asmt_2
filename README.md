@@ -1,5 +1,5 @@
 Classes:
-  - instagram340 -- working ON
+  - instagram340 -- DEB
   - instagramMain  -- incomplete
   - post  -- DEB
   - story -- DEB

@@ -1,4 +1,6 @@
-#include <iostream> 
+//TODO: working on
+
+#include <iostream>
 #include <string>
 
 // TO DO: #include any other libraries you need
@@ -45,6 +47,10 @@ void displayUserManu(User& user){
 			}
 			case 2: {
 				// TO DO: ask for new password and update user's password
+                string newPassword;
+                cout << "Enter the new password: " << endl;
+                cin >> newPassword;
+                user.setPassword(newPassword);
 				break;
 			}
 			case 3: {
@@ -100,8 +106,8 @@ int main(){
 	cout << "\n Welcome to Instagram340:" << endl;
 	// TO DO: Ask the user to enter their information 
 	//        Instantiate a new User object
-    cout << "Please enter your username: " << endl;
-    cin >> username;
+//    cout << "Please enter your username: " << endl;
+//    cin >> username;
 
 
 	// call instagram createUser function 

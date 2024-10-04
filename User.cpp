@@ -7,6 +7,7 @@ using namespace std;
 
 // TO DO: function implementations
 //constructor
+User::User(){}
 User::User(std::string username, std::string email, std::string password, std::string bio, std::string profilePicture):
         username(username), email(email), password(password), bio(bio), profilePicture(profilePicture){
 }

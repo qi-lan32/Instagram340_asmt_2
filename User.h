@@ -11,6 +11,7 @@
 
     public:
             //constructor
+            User();
             User(std::string username, std::string email, std::string password, std::string bio, std::string profilePicture);
 
         //print out profile of user

@@ -210,4 +210,11 @@ Node<ItemType>* LinkedBag<ItemType>::getPointerTo(const ItemType& anEntry) const
 	return curPtr;
 } // end getPointerTo
 
+// -----------------------------------------------------------------------------
+//ADDITIONAL FUNCTIONS
 
+//Returns the head ptr
+template<class ItemType>
+Node<ItemType> *LinkedBag<ItemType>::getHeadPtr() const {
+    return headPtr;
+}

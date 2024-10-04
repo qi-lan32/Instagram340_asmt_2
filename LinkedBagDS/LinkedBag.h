@@ -41,9 +41,14 @@ public:
 	int getFrequencyOf(const ItemType& anEntry) const;
 	std::vector<ItemType> toVector() const;
 
+    //added functions
+    Node<ItemType> *getHeadPtr() const;
 
 
-}; // end LinkedBag
+};
+
+
+// end LinkedBag
 
 #include "LinkedBag.cpp"
 #endif

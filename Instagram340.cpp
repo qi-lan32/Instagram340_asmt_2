@@ -1,4 +1,4 @@
-//TODO: WORKING ON
+//TODO: Complete for now
 
 // TO DO: Implementation of Instagram340 functions
 #include <iostream>
@@ -9,26 +9,31 @@
 
 using namespace std;
 
+//constructor
 Instagram340::Instagram340()
     :users(){
 }
-
+//destructor
 Instagram340::~Instagram340(){
 	Instagram340::users.clear();
 }
 
+//FUNCTIONS
+//Create user and append to list of users
 void Instagram340::createUser(const std::string& username, const std::string& email, const std::string& password,
 				const std::string& bio, const std::string& profilePicture){
 	// TO DO: implement function
-    User* newUser = new User(username, email, password, bio, profilePicture);
+    User newUser(username, email, password, bio, profilePicture);
 
-    users.append(newUser); //TODO: newEntry != user obj?
+    users.append(newUser); // newEntry != user obj?
 }
 
+//find and return user at indexk
 User Instagram340::getUser(const int& indexK){
-//    Node* curr = users.get
-//	// TO DO: implement function
-//    for(int i = 0; i < indexK; i++){
-//
-//    }
+    Node<User>* curr = users.getHeadPtr();
+	// iterate through users until we reach the node at indexK
+    for(int i = 0; i < indexK; i++){
+        curr = curr->getNext();
+    }
+    return curr -> getItem();  //return the node at index k
 }
