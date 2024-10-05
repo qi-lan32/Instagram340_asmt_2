@@ -6,7 +6,7 @@
 class Reel : public Post{
 public:
     Reel();
-    Reel(const std::string& title);
+    Reel(const std::string& title, const std::string& url, const int& videoLength);
     //print out edit message
     void editMsg() const;
     //for comparing two reels

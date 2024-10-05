@@ -22,10 +22,9 @@ Instagram340::~Instagram340(){
 //Create user and append to list of users
 void Instagram340::createUser(const std::string& username, const std::string& email, const std::string& password,
 				const std::string& bio, const std::string& profilePicture){
-	// TO DO: implement function
-    User newUser(username, email, password, bio, profilePicture);
 
-    users.append(newUser); // newEntry != user obj?
+    User newUser(username, email, password, bio, profilePicture); //new User object
+    users.append(newUser);
 }
 
 //find and return user at indexk

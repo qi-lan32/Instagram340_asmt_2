@@ -10,8 +10,8 @@ int durationLimit = 60; //in seconds
 
 //CONSTRUCTORS
 Story::Story(){};
-Story::Story(const std::string& title)
-    :Post(title){
+Story::Story(const std::string& title, const int& videoLength, const std::string url)
+    :Post(title, videoLength, url){
         Story::durationLimit = 60;
 };
 
@@ -25,7 +25,7 @@ int Story::computeTimeToExpiration() const{
     // Get current time
     auto time_now = std::chrono::steady_clock::now();
     // Compute elapsed time since post creation
-    std::chrono::duration<double> elapsed_seconds = time_now - time_stamp; //Post::time_stamp?
+    std::chrono::duration<double> elapsed_seconds = time_now - time_stamp;
     // time to expiration in hours
     int timeToExpiration = (expiresAfter - elapsed_seconds.count()) / secondsInHour;
 

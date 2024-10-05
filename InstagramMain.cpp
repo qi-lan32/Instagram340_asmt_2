@@ -58,17 +58,58 @@ void displayUserManu(User& user){
 				//        (title, media URL, video length in seconds)
 				//        Your program should set the time stamp to current time (code provided in Post.cpp) 
 				// then create the post and add it to the user's posts
+                int choice = 0;
+                string title, url;
+                int videoLength;
+
+                do{
+                    cout << "Would you like to make a reel or story? (Enter 1 for reel, 2 for story)\n" << endl;
+                    cin >> choice;
+                }while(choice = 0 || choice != 1 || choice != 2);
+
+                //make a reel (1) or story (2) according to user's choice
+                if(choice == 1){
+                    cout << "Enter the title of your reel: " << endl;
+                    cin >> title;
+                    cout << "Provide the URL of your reel: " << endl;
+                    cin >> url;
+                    cout << "Provide the length of your reel in seconds: " << endl;
+                    cin >> videoLength;
+
+                    Reel newReel(title, url, videoLength); //create new reel using given info
+                    LinkedBag temp = user.getPosts(); //get linkedBag of posts from user
+                    temp.append(newReel);   //append no reel to the user's posts
+                }else{
+                    cout << "Enter the title of your story: " << endl;
+                    cin >> title;
+                    cout << "Provide the URL of your story: " << endl;
+                    cin >> url;
+                    cout << "Provide the length of your story in seconds: " << endl;
+                    cin >> videoLength;
+
+                    Story newStory(title, videoLength, url);
+                    LinkedBag temp = user.getPosts();
+                    temp.append(newStory);
+                }
+
 				break;
 			}
 			case 4:{
 				// TO DO: display all user's posts
 				//        You may re-use code from class demo
+                user.displayAllPosts();
 				break;
 			}
 			case 5: {
 				// TO DO: ask the user for a value k
 				// Find the Kth post, if k > Linked Bag size, 
 				//    return an error message that includes the size of the Linked Bag
+                int k;
+                cout << "Enter a value for the 'k': " << endl;
+                cin >> k;
+
+                //findkthitem in linkedbag
+
 				break;
 			}
 			case 6: {
