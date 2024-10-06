@@ -101,29 +101,69 @@ void displayUserManu(User& user){
 				break;
 			}
 			case 5: {
-				// TO DO: ask the user for a value k
-				// Find the Kth post, if k > Linked Bag size, 
-				//    return an error message that includes the size of the Linked Bag
                 int k;
+                LinkedBag posts = user.getPosts();
+                //ask the user for a value k
                 cout << "Enter a value for the 'k': " << endl;
                 cin >> k;
+                // Find the Kth post, if k > Linked Bag size,
+                //    return an error message that includes the size of the Linked Bag
+                if(k > posts.getCurrentSize()){
+                    cout << "Your requested post is out of range!" << endl;
+                }else{
+                    Node<Post>* item = posts.findKthItem(k);
+                    Post kth = item->getItem();
 
-                //findkthitem in linkedbag
+                    cout<< kth.getTitle() << " || " << kth.getVideoLength() << " seconds || " << kth.getLikes() << " likes\n"
+                        << kth.getTimeStamp() << " || " << kth.getUrl() << endl;
+                }
 
 				break;
 			}
 			case 6: {
-				// TO DO: ask the user for the index of the post they want to modify and the new title
-				// Find the post, then update the title. 
-				// If index > Linked Bag size, 
-				//    return an error message that includes the size of the Linked Bag
+                //TO DO: ask user for index of post they want to modify and the new title
+                int index;
+                string newTitle;
+                LinkedBag posts = user.getPosts();
+				//ask user for input on index and title
+                cout << "What is the index of the post you would like to modify? Enter: " << endl;
+                cin >> index;
+
+                // If index > Linked Bag size, print out error message
+                if(index > posts.getCurrentSize()){
+                    cout << "Your index is out of range! The number of total posts you have is " << posts.getCurrentSize() << endl;
+                    break;
+                }
+                cout << "Enter the new title you would like to change to: " << endl;
+                cin >> newTitle;
+
+				// Find the post, then update the title. Print out edit message
+                Node<Post>* post = posts.findKthItem(index);
+                Post item = post->getItem();
+                item.setTitle(newTitle);
+                item.editMsg(newTitle);
+
 				break;
 			}
 			case 7: {
-				// TO DO: ask the user for the index of the post they want to delete 
+				// TO DO: ask the user for the index of the post they want to delete and delete it
+                int index;
+                LinkedBag posts = user.getPosts();
+                //ask user for input on index
+                cout << "What is the index of the post you would like to delete? Enter: " << endl;
+                cin >> index;
+
+                // If index > LinkedBag size, return error message
+                if(index > posts.getCurrentSize()){
+                    cout << "Your index is out of range! The number of total posts you have is " << posts.getCurrentSize() << endl;
+                    break;
+                }
 				// Find the post, then remove it from the list. 
-				// If index > LinkedBag size, 
-				//    return an error message that includes the size of the Linked Bag
+                Node<Post>* item = posts.findKthItem(index);
+                Post post = item->getItem();
+                posts.remove(post);
+
+                cout << "Your post has been removed." << endl;
 				break;
 			}
 			case 0: {
@@ -142,24 +182,30 @@ int main(){
 	// Instantiating the program using the default constructor
 	// With this implementation, the application will only have one user
 	Instagram340 instagram;
-    string username;
+    string username, email, password, bio, profilePic;
 
 	cout << "\n Welcome to Instagram340:" << endl;
-	// TO DO: Ask the user to enter their information 
-	//        Instantiate a new User object
-//    cout << "Please enter your username: " << endl;
-//    cin >> username;
+	// TO DO: Ask the user to enter their information to instantiate a new user object
 
+    cout << "Please enter your username: " << endl;
+    cin >> username;
+    cout << "Please enter your email: " << endl;
+    cin >> email;
+    cout << "Please enter your password: " << endl;
+    cin >> password;
+    cout << "Please enter your bio: " << endl;
+    cin >> bio;
+    cout << "Please enter your profile picture: " << endl;
+    cin >> profilePic;
 
 	// call instagram createUser function 
 	// replace /*...*/ with the right parameters
-	instagram.createUser("username","@email.com", "password","this is my bio.", "this is my profilepic.");
-
+	instagram.createUser("username","@email.com", "password","this is my bio.", "this is my profile pic.");
 
 	// Retrieve the user 
 	User currentUser = instagram.getUser(0);
     currentUser.displayProfile();
-//	displayUserManu(currentUser);
+	displayUserManu(currentUser);
 				
 	return 0;
 }

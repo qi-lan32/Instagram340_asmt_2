@@ -9,6 +9,9 @@ using namespace std;
 // TO DO: function implementations
 //constructor
 User::User(){}
+User::User(std::string username, std::string password, std::string email)
+    :username(username), password(password), email(email){
+}
 User::User(std::string username, std::string email, std::string password, std::string bio, std::string profilePicture):
         username(username), email(email), password(password), bio(bio), profilePicture(profilePicture), posts(){
 }
@@ -19,10 +22,12 @@ void User::displayProfile() const{
     << "\nProfile Picture: " << User::profilePicture << endl;
 }
 
-//display all the posts of user
+//display all the posts of user ----- IF NOT WORK, then use (.toVector()) and iterate vector [similar to array]
 void User::displayAllPosts() const {
     Node<Post>* curr = posts.getHeadPtr();
     Post post;
+
+    cout << User::username << "'s Posts\n" << "--------------------------------------" << endl;
     //iterate through the posts linked list and print details of each post
     while(curr != nullptr){
         post = curr->getItem();

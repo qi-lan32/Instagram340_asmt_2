@@ -20,7 +20,7 @@ public:
     //allows comparison of two posts based on their title
     bool operator==(const Post& otherPost) const;
     //prints out edit message
-    virtual void editMsg() const;
+    virtual void editMsg(std::string& newTitle) const;
 
     //getters
     const std::string &getTitle() const;
@@ -28,6 +28,8 @@ public:
     int getLikes() const;
     const std::string &getUrl() const;
     int getVideoLength() const;
+
+    void setTitle(const std::string &title);
 
 };
 

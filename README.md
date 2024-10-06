@@ -1,6 +1,6 @@
 Classes:
   - instagram340 -- DEB
-  - instagramMain  -- incomplete
+  - instagramMain  -- DEB
   - post  -- DEB
   - story -- DEB
   - reel -- DEB

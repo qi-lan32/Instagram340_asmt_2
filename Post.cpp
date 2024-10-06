@@ -24,8 +24,8 @@ bool Post::operator==(const Post& otherPost) const {
 }
 
 //print out edit message when user edits
-void Post::editMsg() const {
-    cout << "You have edited your post \"" << Post::title << "\"" << endl;
+void Post::editMsg(std::string& newTitle) const {
+    cout << "You have edited your post \"" << Post::title << "\" title to " << "\"" << newTitle << "\"" << endl;
 }
 
 //GETTERS
@@ -49,3 +49,6 @@ int Post::getVideoLength() const {
     return videoLength;
 }
 
+void Post::setTitle(const string &title) {
+    Post::title = title;
+}
