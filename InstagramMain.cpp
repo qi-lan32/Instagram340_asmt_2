@@ -1,4 +1,4 @@
-//TODO: working on
+//TODO: test
 
 #include <iostream>
 #include <string>
@@ -53,7 +53,7 @@ void displayUserManu(User& user){
                 user.setPassword(newPassword);
 				break;
 			}
-			case 3: {
+			case 3: {       //TODO: DEB
 				// TO DO: ask user to choose between Reel and Story, ask them to input post details:
 				//        (title, media URL, video length in seconds)
 				//        Your program should set the time stamp to current time (code provided in Post.cpp) 
@@ -62,10 +62,8 @@ void displayUserManu(User& user){
                 string title, url;
                 int videoLength;
 
-                do{
-                    cout << "Would you like to make a reel or story? (Enter 1 for reel, 2 for story)\n" << endl;
-                    cin >> choice;
-                }while(choice = 0 || choice != 1 || choice != 2);
+                cout << "Would you like to make a reel or story? (Enter 1 for reel, 2 for story)" << endl;
+                cin >> choice;
 
                 //make a reel (1) or story (2) according to user's choice
                 if(choice == 1){
@@ -76,10 +74,17 @@ void displayUserManu(User& user){
                     cout << "Provide the length of your reel in seconds: " << endl;
                     cin >> videoLength;
 
+                    //if the length of reel is longer than its duration limit, continue to ask for an appropriate length
+                    while(!Reel::compareDurationLimit(videoLength)){
+                        cout << "Your reel is over 90 seconds! Please keep your reel under the limit." << endl;
+                        cout << "Provide the length of your reel in seconds: " << endl;
+                        cin >> videoLength;
+                    } //check reel length
+
                     Reel newReel(title, url, videoLength); //create new reel using given info
-                    LinkedBag temp = user.getPosts(); //get linkedBag of posts from user
-                    temp.append(newReel);   //append no reel to the user's posts
-                }else{
+                    LinkedBag<Post> *temp = &user.getPosts(); //get linkedBag of posts from user
+                    temp->append(newReel);   //append no reel to the user's posts
+                }else if(choice == 2){
                     cout << "Enter the title of your story: " << endl;
                     cin >> title;
                     cout << "Provide the URL of your story: " << endl;
@@ -87,9 +92,18 @@ void displayUserManu(User& user){
                     cout << "Provide the length of your story in seconds: " << endl;
                     cin >> videoLength;
 
-                    Story newStory(title, videoLength, url);
-                    LinkedBag temp = user.getPosts();
-                    temp.append(newStory);
+                    //check whether the length of story is under limit, if not, keep prompting user for appropriate time
+                    while(!Story::compareDurationLimit(videoLength)){
+                        cout << "Your story is over 60 seconds! Please keep your story under the limit." << endl;
+                        cout << "Provide the length of your story in seconds: " << endl;
+                        cin >> videoLength;
+                    } //check story length
+
+                    Story newStory(title, videoLength, url);    //create new story object
+                    LinkedBag<Post> *temp = &user.getPosts();
+                    temp->append(newStory);
+                }else{
+                    cout << "Invalid choice!" << endl;
                 }
 
 				break;
@@ -102,25 +116,16 @@ void displayUserManu(User& user){
 			}
 			case 5: {
                 int k;
-                LinkedBag posts = user.getPosts();
                 //ask the user for a value k
                 cout << "Enter a value for the 'k': " << endl;
                 cin >> k;
                 // Find the Kth post, if k > Linked Bag size,
                 //    return an error message that includes the size of the Linked Bag
-                if(k > posts.getCurrentSize()){
-                    cout << "Your requested post is out of range!" << endl;
-                }else{
-                    Node<Post>* item = posts.findKthItem(k);
-                    Post kth = item->getItem();
-
-                    cout<< kth.getTitle() << " || " << kth.getVideoLength() << " seconds || " << kth.getLikes() << " likes\n"
-                        << kth.getTimeStamp() << " || " << kth.getUrl() << endl;
-                }
+                user.displayKthPost(k);
 
 				break;
 			}
-			case 6: {
+			case 6: {       //TODO: DEB
                 //TO DO: ask user for index of post they want to modify and the new title
                 int index;
                 string newTitle;
@@ -132,16 +137,12 @@ void displayUserManu(User& user){
                 // If index > Linked Bag size, print out error message
                 if(index > posts.getCurrentSize()){
                     cout << "Your index is out of range! The number of total posts you have is " << posts.getCurrentSize() << endl;
-                    break;
-                }
-                cout << "Enter the new title you would like to change to: " << endl;
-                cin >> newTitle;
+                }else{
+                    cout << "Enter the new title you would like to change to: " << endl;
+                    cin >> newTitle;
 
-				// Find the post, then update the title. Print out edit message
-                Node<Post>* post = posts.findKthItem(index);
-                Post item = post->getItem();
-                item.setTitle(newTitle);
-                item.editMsg(newTitle);
+                    user.modifyPost(index, newTitle);
+                }
 
 				break;
 			}
@@ -156,14 +157,9 @@ void displayUserManu(User& user){
                 // If index > LinkedBag size, return error message
                 if(index > posts.getCurrentSize()){
                     cout << "Your index is out of range! The number of total posts you have is " << posts.getCurrentSize() << endl;
-                    break;
+                }else{
+                    user.removePost(index);
                 }
-				// Find the post, then remove it from the list. 
-                Node<Post>* item = posts.findKthItem(index);
-                Post post = item->getItem();
-                posts.remove(post);
-
-                cout << "Your post has been removed." << endl;
 				break;
 			}
 			case 0: {
@@ -187,20 +183,22 @@ int main(){
 	cout << "\n Welcome to Instagram340:" << endl;
 	// TO DO: Ask the user to enter their information to instantiate a new user object
 
-    cout << "Please enter your username: " << endl;
-    cin >> username;
-    cout << "Please enter your email: " << endl;
-    cin >> email;
-    cout << "Please enter your password: " << endl;
-    cin >> password;
-    cout << "Please enter your bio: " << endl;
-    cin >> bio;
-    cout << "Please enter your profile picture: " << endl;
-    cin >> profilePic;
+//    cout << "Please enter your username: " << endl;
+//    cin >> username;
+//    cout << "Please enter your email: " << endl;
+//    cin >> email;
+//    cout << "Please enter your password: " << endl;
+//    cin >> password;
+//    cout << "Please enter your bio: " << endl;
+//    cin >> bio;
+//    cout << "Please enter your profile picture: " << endl;
+//    cin >> profilePic;
+//
+//	// call instagram createUser function
+//	// replace /*...*/ with the right parameters
+//	instagram.createUser(username,email, password, bio, profilePic);
 
-	// call instagram createUser function 
-	// replace /*...*/ with the right parameters
-	instagram.createUser("username","@email.com", "password","this is my bio.", "this is my profile pic.");
+    instagram.createUser("username","email", "password", "bio", "profilePic");
 
 	// Retrieve the user 
 	User currentUser = instagram.getUser(0);

@@ -3,6 +3,7 @@
 #include "User.h"
 #include <string>
 #include "LinkedBagDS/LinkedBag.h"
+#include "Post.h"
 
 using namespace std;
 
@@ -24,17 +25,57 @@ void User::displayProfile() const{
 
 //display all the posts of user ----- IF NOT WORK, then use (.toVector()) and iterate vector [similar to array]
 void User::displayAllPosts() const {
-    Node<Post>* curr = posts.getHeadPtr();
-    Post post;
+    int numOfPosts = posts.getCurrentSize();
+    Node<Post> *temp = posts.getHeadPtr();
+    Post post;  //problem?
 
-    cout << User::username << "'s Posts\n" << "--------------------------------------" << endl;
-    //iterate through the posts linked list and print details of each post
-    while(curr != nullptr){
-        post = curr->getItem();
-        cout << post.getTitle() << " || " << post.getVideoLength() << " seconds || " << post.getLikes() << " likes\n"
-            << post.getTimeStamp() << " || " << post.getUrl() << " \n ==============================================" << endl;
-        curr = curr->getNext();
+    if(numOfPosts == 0){
+        cout << "You do not have any posts." << endl;
+    }else{
+        cout << User::username << "'s Posts\n" << "--------------------------------------" << endl;
+        while(temp != nullptr){
+            post = temp->getItem();
+            post.printPost();   //problem?
+            temp = temp->getNext();
+        }
     }
+}
+// display the post at kth index
+void User::displayKthPost(const int& k) const{
+    Node<Post> *temp = posts.getHeadPtr();
+    Post post;
+    int counter = 0;
+
+    //if the kth post exists, display it; else, return message to tell user the post they requested does not exist
+    if(posts.getCurrentSize() > k){
+        while(temp != nullptr && counter != k){
+            temp = temp->getNext();
+        }
+        post = temp->getItem();
+        post.printPost();   //TODO: recognize whether a post is reel or story ?
+    } else{
+        cout << "Your requested post does not exist." << endl;
+    }
+}
+
+//remove post at the given index
+void User::removePost(const int &index) {
+// Find the post, then remove it from the list.
+    Node<Post>* item = posts.findKthItem(index);
+    Post post = item->getItem();
+    posts.remove(post);
+    cout << "Your post has been removed." << endl;
+}
+
+//modify post at given index
+void User::modifyPost(const int &index, const string &newTitle){
+    // Find the post, then update the title. Print out edit message -- todo -- not changing title in post obj
+    Node<Post>* post = posts.findKthItem(index);
+    auto item = post->getItem(); // problem -- type recognized as post (not type of item itself (reel/story))
+
+    cout << "setting new title ... " << endl;
+    item.setTitle(newTitle);    // todo -- nOT WORKING??
+    item.editMsg(newTitle);
 }
 
 // Operator == overloading implementation
@@ -46,7 +87,8 @@ bool User::operator==(const User& otherUser) const {
 const string &User::getUsername() const {
     return username;
 }
-const LinkedBag<Post> &User::getPosts() const {
+
+LinkedBag<Post> &User::getPosts() {
     return posts;
 }
 
@@ -54,6 +96,8 @@ const LinkedBag<Post> &User::getPosts() const {
 void User::setPassword(const string &password) {
     this->password = password;
 }
+
+
 
 
 

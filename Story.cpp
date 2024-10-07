@@ -12,8 +12,7 @@ int durationLimit = 60; //in seconds
 Story::Story(){};
 Story::Story(const std::string& title, const int& videoLength, const std::string url)
     :Post(title, videoLength, url){
-        Story::durationLimit = 60;
-};
+}
 
 //METHODS
 // When displaying a story, use this to compute expected expiration time: timeToExpiration
@@ -40,4 +39,13 @@ void Story::editMsg() const {
 //comparing title of two stories
 bool Story::operator==(const Story& otherStory) const{
     return Story::title == otherStory.title;
+}
+
+//check if story is appropriate length
+bool Story::compareDurationLimit(const int& reelLength) {
+    return reelLength <= durationLimit;
+}
+
+void Story::printPost() const {
+    cout << "Story \"" << title << "\" || " <<  videoLength << " seconds || " << likes << " likes || " << timeStamp << " || " << url << endl;
 }

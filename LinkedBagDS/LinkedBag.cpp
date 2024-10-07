@@ -8,8 +8,6 @@
 #include "Node.h"
 #include <cstddef>
 
-//TODO: complete for now
-
 // Assignment 2 functions -------------------------------------------
 // TO DO: implement the two functions here
 //appending element to end of list
@@ -19,6 +17,7 @@ bool LinkedBag<ItemType>::append(const ItemType& newEntry){
     Node<ItemType>* nextNode = new Node<ItemType>();    //new node storing newEntry
     nextNode ->setItem(newEntry);
 
+    //if headPtr is null, set it equal to nextNode
     if(headPtr == nullptr){
         headPtr = nextNode;
     }else{
@@ -28,11 +27,12 @@ bool LinkedBag<ItemType>::append(const ItemType& newEntry){
         }
         curr->setNext(nextNode);   //set last node to point to newEntry
     }
+
     itemCount++;
     return true;
 }   // end append
 
-template<class ItemType>
+template<class ItemType>        //todo : testing this func
 Node<ItemType>* LinkedBag<ItemType>::findKthItem(const int& indexK) const{
     int counter = 0;
     Node<ItemType>* curr = headPtr;
@@ -41,6 +41,7 @@ Node<ItemType>* LinkedBag<ItemType>::findKthItem(const int& indexK) const{
         curr = curr->getNext();
         counter++;
     }
+    std::cout << "a pointer to headptr had been returned, this is the address: " << curr << std::endl;
     return curr;
 }   // end findKthItem
 // ------------------------------------------------------------------

@@ -22,12 +22,16 @@
             void displayProfile() const;
             //print out all the posts by the user
             void displayAllPosts() const;
+            //find and print specific post at k
+            void displayKthPost(const int& k) const;
             // Operator == overloading function prototype:
             bool operator==(const User& otherUser) const;
+            void removePost(const int& index);
+            void modifyPost(const int& index, const std::string& newTitle);
 
             //getter
             const std::string &getUsername() const;
-            const LinkedBag<Post> &getPosts() const;
+            LinkedBag<Post> &getPosts();
 
         //setter
             void setPassword(const std::string &password);

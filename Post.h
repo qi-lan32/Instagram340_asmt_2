@@ -20,7 +20,9 @@ public:
     //allows comparison of two posts based on their title
     bool operator==(const Post& otherPost) const;
     //prints out edit message
-    virtual void editMsg(std::string& newTitle) const;
+    virtual void editMsg(const std::string& newTitle) const;
+    //display post
+    virtual void printPost() const;
 
     //getters
     const std::string &getTitle() const;
@@ -29,7 +31,9 @@ public:
     const std::string &getUrl() const;
     int getVideoLength() const;
 
+    //setters
     void setTitle(const std::string &title);
+    void setTimeStamp(const int &time_stamp);
 
 };
 

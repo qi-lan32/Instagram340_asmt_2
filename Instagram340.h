@@ -1,3 +1,5 @@
+#ifndef INSTAGRAM340_H
+#define INSTAGRAM340_H
 #include "LinkedBagDS/LinkedBag.h"
 // TO DO include necessary libraries
 #include "User.h"
@@ -18,3 +20,5 @@ class Instagram340 {
 
 		User getUser(const int& indexK);
 };
+
+#endif
