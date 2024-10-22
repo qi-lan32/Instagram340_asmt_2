@@ -12,6 +12,11 @@ Node<ItemType>::Node() : next(nullptr)
 } // end default constructor
 
 template<class ItemType>
+Node<ItemType>::Node(ItemType *anItem) {
+
+} //end added constructor
+
+template<class ItemType>
 Node<ItemType>::Node(const ItemType& anItem) : item(anItem), next(nullptr)
 {
 } // end constructor

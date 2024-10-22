@@ -1,4 +1,6 @@
-//TODO: test
+/*
+ * TODO: Everything should work now
+ */
 
 #include <iostream>
 #include <string>
@@ -35,6 +37,7 @@ void displayUserManu(User& user){
 		<< "5. Display Kth Post\n"
 		<< "6. Modify Post\n"
 		<< "7. Delete Post\n"
+        << "8. Edit Post\n"
 		<< "0. Logout\n"
 		<< "Choice: ";
 		cin >> userChoice;
@@ -53,7 +56,7 @@ void displayUserManu(User& user){
                 user.setPassword(newPassword);
 				break;
 			}
-			case 3: {       //TODO: DEB
+			case 3: {
 				// TO DO: ask user to choose between Reel and Story, ask them to input post details:
 				//        (title, media URL, video length in seconds)
 				//        Your program should set the time stamp to current time (code provided in Post.cpp) 
@@ -81,9 +84,9 @@ void displayUserManu(User& user){
                         cin >> videoLength;
                     } //check reel length
 
-                    Reel newReel(title, url, videoLength); //create new reel using given info
-                    LinkedBag<Post> *temp = &user.getPosts(); //get linkedBag of posts from user
-                    temp->append(newReel);   //append no reel to the user's posts
+                    Reel* newReel = new Reel(title, url, videoLength); //create new reel using given info
+                    user.getPosts().append(newReel);
+
                 }else if(choice == 2){
                     cout << "Enter the title of your story: " << endl;
                     cin >> title;
@@ -99,9 +102,9 @@ void displayUserManu(User& user){
                         cin >> videoLength;
                     } //check story length
 
-                    Story newStory(title, videoLength, url);    //create new story object
-                    LinkedBag<Post> *temp = &user.getPosts();
-                    temp->append(newStory);
+                    Story* newStory = new Story(title, videoLength, url);    //create new story object
+                    user.getPosts().append(newStory);
+
                 }else{
                     cout << "Invalid choice!" << endl;
                 }
@@ -125,11 +128,11 @@ void displayUserManu(User& user){
 
 				break;
 			}
-			case 6: {       //TODO: DEB
+			case 6: {
                 //TO DO: ask user for index of post they want to modify and the new title
                 int index;
                 string newTitle;
-                LinkedBag posts = user.getPosts();
+                LinkedBag<Post*>& posts = user.getPosts();
 				//ask user for input on index and title
                 cout << "What is the index of the post you would like to modify? Enter: " << endl;
                 cin >> index;
@@ -149,7 +152,7 @@ void displayUserManu(User& user){
 			case 7: {
 				// TO DO: ask the user for the index of the post they want to delete and delete it
                 int index;
-                LinkedBag posts = user.getPosts();
+                LinkedBag<Post*>& posts = user.getPosts();
                 //ask user for input on index
                 cout << "What is the index of the post you would like to delete? Enter: " << endl;
                 cin >> index;
@@ -162,6 +165,20 @@ void displayUserManu(User& user){
                 }
 				break;
 			}
+            case 8: {
+                //TO DO: ask the user for the index of the post they want to edit, depending on the type of post they edited, print an edit message
+                int index;
+                cout << "What is the index of the post you would like to edit? Enter: " << endl;
+                cin >> index;
+
+                if(index > user.getPosts().getCurrentSize()){
+                    cout << "This post does not exist.\n" << endl;
+                }else{
+                    //find the post and print out corresponding edit message
+                    user.getPosts().findKthItem(index)->getItem()->editMsg();
+                }
+                break;
+            }
 			case 0: {
 				cout << "Logging you out." << endl;
 				break;
@@ -183,27 +200,26 @@ int main(){
 	cout << "\n Welcome to Instagram340:" << endl;
 	// TO DO: Ask the user to enter their information to instantiate a new user object
 
-//    cout << "Please enter your username: " << endl;
-//    cin >> username;
-//    cout << "Please enter your email: " << endl;
-//    cin >> email;
-//    cout << "Please enter your password: " << endl;
-//    cin >> password;
-//    cout << "Please enter your bio: " << endl;
-//    cin >> bio;
-//    cout << "Please enter your profile picture: " << endl;
-//    cin >> profilePic;
-//
-//	// call instagram createUser function
-//	// replace /*...*/ with the right parameters
-//	instagram.createUser(username,email, password, bio, profilePic);
+    cout << "Please enter your username: " << endl;
+    cin >> username;
+    cout << "Please enter your email: " << endl;
+    cin >> email;
+    cout << "Please enter your password: " << endl;
+    cin >> password;
+    cout << "Please enter your bio: " << endl;
+    cin >> bio;
+    cout << "Please enter your profile picture: " << endl;
+    cin >> profilePic;
 
-    instagram.createUser("username","email", "password", "bio", "profilePic");
+	// call instagram createUser function
+	// replace /*...*/ with the right parameters
+	instagram.createUser(username,email, password, bio, profilePic);
 
-	// Retrieve the user 
-	User currentUser = instagram.getUser(0);
-    currentUser.displayProfile();
-	displayUserManu(currentUser);
+//	 Retrieve the user
+	User* currentUser = instagram.getUser(0);
+
+    currentUser->displayProfile();
+	displayUserManu(*currentUser);
 				
 	return 0;
 }

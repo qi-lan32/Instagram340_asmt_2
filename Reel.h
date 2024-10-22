@@ -9,12 +9,10 @@ public:
     Reel(const std::string& title, const std::string& url, const int& videoLength);
     //print out edit message
     void editMsg() const;
-    //for comparing two reels
-    bool operator==(const Reel& otherReel) const;
     //comparing length of reel created
     static bool compareDurationLimit(const int& reelLength);
     //display reel
-    void printPost() const;
+    void printPost() const override;
 
 private:
     const static int durationLimit = 90;  //limit of up to 90 seconds

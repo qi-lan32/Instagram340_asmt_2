@@ -1,6 +1,5 @@
-//TODO: complete for now
-
 #include "Reel.h"
+
 
 //CONSTRUCTORS
 Reel::Reel(){}
@@ -15,15 +14,12 @@ void Reel::editMsg() const{
     << endl;
 }
 
-//compare title of two reels
-bool Reel::operator==(const Reel& otherReel) const{
-    return Reel::title == otherReel.title;
-}
 //determine if reel have appropriate time length
 bool Reel::compareDurationLimit(const int& reelLength) {
     return reelLength <= durationLimit;
 }
 
 void Reel::printPost() const {
-    cout << "Reel \"" << title << "\" || " <<  videoLength << " seconds || " << likes << " likes || " << timeStamp << " || " << url << endl;
+    cout << "Reel \"" << title << "\" || " <<  videoLength << " seconds || " << likes << " likes || " << url << endl;
 }
+

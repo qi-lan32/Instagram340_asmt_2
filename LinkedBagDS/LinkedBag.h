@@ -44,7 +44,6 @@ public:
     //added functions
     Node<ItemType> *getHeadPtr() const;
 
-
 };
 
 

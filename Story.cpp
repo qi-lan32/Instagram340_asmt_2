@@ -1,4 +1,3 @@
-//TODO: complete for now
 
 #include "Story.h"
 #include "Post.h"
@@ -12,6 +11,7 @@ int durationLimit = 60; //in seconds
 Story::Story(){};
 Story::Story(const std::string& title, const int& videoLength, const std::string url)
     :Post(title, videoLength, url){
+    timeTillExpiration = computeTimeToExpiration();
 }
 
 //METHODS
@@ -33,12 +33,8 @@ int Story::computeTimeToExpiration() const{
 
 //print out edit message
 void Story::editMsg() const {
-    cout << "A filter, music, stickers and effects have been added to the post \"" << Story::title <<"\""
+    cout << "A filter, music, stickers and effects have been added to the Story \"" << Story::title <<"\""
     << endl;
-}
-//comparing title of two stories
-bool Story::operator==(const Story& otherStory) const{
-    return Story::title == otherStory.title;
 }
 
 //check if story is appropriate length
@@ -47,5 +43,6 @@ bool Story::compareDurationLimit(const int& reelLength) {
 }
 
 void Story::printPost() const {
-    cout << "Story \"" << title << "\" || " <<  videoLength << " seconds || " << likes << " likes || " << timeStamp << " || " << url << endl;
+    cout << "Story \"" << title << "\" || " <<  videoLength << " seconds || " << likes << " likes || " << computeTimeToExpiration() << " hours till expiration || " << url << endl;
 }
+

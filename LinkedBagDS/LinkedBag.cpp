@@ -14,8 +14,7 @@
 template<class ItemType>
 bool LinkedBag<ItemType>::append(const ItemType& newEntry){
     Node<ItemType>* curr = headPtr;
-    Node<ItemType>* nextNode = new Node<ItemType>();    //new node storing newEntry
-    nextNode ->setItem(newEntry);
+    Node<ItemType>* nextNode = new Node<ItemType>(newEntry);
 
     //if headPtr is null, set it equal to nextNode
     if(headPtr == nullptr){
@@ -32,16 +31,18 @@ bool LinkedBag<ItemType>::append(const ItemType& newEntry){
     return true;
 }   // end append
 
-template<class ItemType>        //todo : testing this func
+template<class ItemType>
 Node<ItemType>* LinkedBag<ItemType>::findKthItem(const int& indexK) const{
     int counter = 0;
     Node<ItemType>* curr = headPtr;
+    if(headPtr == nullptr || indexK > itemCount){
+        return nullptr;
+    }
     //loop until we arrive at the node at indexK
-    while(counter != indexK){
+    while(counter < indexK && curr != nullptr){
         curr = curr->getNext();
         counter++;
     }
-    std::cout << "a pointer to headptr had been returned, this is the address: " << curr << std::endl;
     return curr;
 }   // end findKthItem
 // ------------------------------------------------------------------

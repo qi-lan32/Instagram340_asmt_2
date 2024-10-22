@@ -10,7 +10,8 @@
     class User{
         private:
             std::string username, email, password, bio, profilePicture;
-            LinkedBag<Post> posts;
+            LinkedBag<Post*> posts; // in assignment 3 --  use shared ptrs; todo this stores ptrs to new post objs created
+                    // suppose to create new reel/story objs in heap -- using new;
 
         public:
             //constructor
@@ -31,7 +32,8 @@
 
             //getter
             const std::string &getUsername() const;
-            LinkedBag<Post> &getPosts();
+
+            LinkedBag<Post *> &getPosts();
 
         //setter
             void setPassword(const std::string &password);

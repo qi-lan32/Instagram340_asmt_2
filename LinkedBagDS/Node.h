@@ -15,13 +15,16 @@ private:
    
 public:
    Node();
+   Node(ItemType* anItem); //added constructor
    Node(const ItemType& anItem);
    Node(const ItemType& anItem, Node<ItemType>* nextNodePtr);
    void setItem(const ItemType& anItem);
    void setNext(Node<ItemType>* nextNodePtr);
    ItemType getItem() const ;
    Node<ItemType>* getNext() const ;
-}; // end Node
+};
+
+// end Node
 
 #include "Node.cpp"
 #endif

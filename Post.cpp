@@ -1,5 +1,3 @@
-//TODO: complete for now
-
 // TO DO: #include all the standard libraries and your own libraries here
 #include <chrono>
 #include "Post.h"
@@ -10,7 +8,8 @@ using namespace std;
 //constructors
 Post::Post(){};
 Post::Post(const std::string& title, const int& videoLength, const std::string& url):
-        title(title), url(url), videoLength(videoLength), likes(0){
+        title(title), url(url), videoLength(videoLength), likes(0), timeStamp(std::chrono::steady_clock::now()){
+
 }
 //destructor
 Post::~Post() {};
@@ -21,25 +20,21 @@ auto time_stamp = std::chrono::steady_clock::now();     //TODO -- CHECK HOW TO U
 // ------------------------------------------------------------------------------
 // Operator overloading implementation
 bool Post::operator==(const Post& otherPost) const {
-    return Post::title == otherPost.title;  //	return Post::title == otherPost.title && timeStamp == otherPost.timeStamp && likes == otherPost.likes && url == otherPost.url;
+    return Post::title == otherPost.title && timeStamp == otherPost.timeStamp && likes == otherPost.likes && url == otherPost.url;
 }
 
 //print out edit message when user edits
-void Post::editMsg(const std::string& newTitle) const {
-    cout << "You have edited your post title to " << "\"" << newTitle << "\"" << endl;
+void Post::editMsg() const {
+    cout << "You have edited your Post." << endl;
 }
 //print post
 void Post::printPost() const {
-    cout << "Post \"" << title << "\" || " <<  videoLength << " seconds || " << likes << " likes || " << timeStamp << " || " << url << endl;
+    cout << "Post \"" << title << "\" || " <<  videoLength << " seconds || " << likes << " likes || " << url << endl;
 }
 
 //GETTERS
 const string &Post::getTitle() const {
     return title;
-}
-
-int Post::getTimeStamp() const {
-    return timeStamp;
 }
 
 int Post::getLikes() const {
@@ -54,12 +49,13 @@ int Post::getVideoLength() const {
     return videoLength;
 }
 
-void Post::setTitle(const string &title) {
-    Post::title = title;
-    cout << "title had been set to " << title << endl;
-}
 
 //SETTERS
-void Post::setTimeStamp(const int &time_stamp){
-    Post::timeStamp = time_stamp;
+void Post::setTitle(const string &title) {
+    Post::title = title;
+    cout << "You have changed your post title to \"" << title << "\"." << endl;
+}
+
+const chrono::time_point<std::chrono::steady_clock> &Post::getTimeStamp() const {
+    return timeStamp;
 }
