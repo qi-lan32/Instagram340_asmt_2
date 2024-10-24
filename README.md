@@ -2,8 +2,8 @@
   - implement all necessary classes and header files: Post, Reel, Story, User, Instagram340
   - implement 2 methods in LinkedBag: append and findKthItem
 
-  * >= one instance of inheritance
-  * >= one use of polymorphism
+  * at least one instance of inheritance
+  * at least one use of polymorphism
 
 ... onto asmt 3 upgrade and implementation 
   -  change linked bag to using smart ptrs, choose the right type
