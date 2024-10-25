@@ -1,9 +1,18 @@
 /*
- * TODO: Everything should work now
+ * TODO: asmt 3
+ *      2. change linked bag to using smart ptrs, choose the right type
+ *      3. friend func - a) initialize User profile b) initialize Posts (Reel and Story)
+ *          - display user profile info and posts
+ *          - overload both << and >> operator in all classes
+ *          ! in Instagram340, only need to overload << to display msg: "Welcome to Instagram 340!"
+ *      4. BIG 3 - implement the destructor, the copy constructor, and overload assignment operator
+ *          !include an implementation in all program classes
+ *
  */
 
 #include <iostream>
 #include <string>
+#include <memory>
 
 // TO DO: #include any other libraries you need
 #include "Instagram340.h"
@@ -113,7 +122,6 @@ void displayUserManu(User& user){
 			}
 			case 4:{
 				// TO DO: display all user's posts
-				//        You may re-use code from class demo
                 user.displayAllPosts();
 				break;
 			}
@@ -132,12 +140,12 @@ void displayUserManu(User& user){
                 //TO DO: ask user for index of post they want to modify and the new title
                 int index;
                 string newTitle;
-                LinkedBag<Post*>& posts = user.getPosts();
+                LinkedBag<unique_ptr<Post>>& posts = user.getPosts();
 				//ask user for input on index and title
                 cout << "What is the index of the post you would like to modify? Enter: " << endl;
                 cin >> index;
 
-                // If index > Linked Bag size, print out error message
+                // If index > Linked Bag size, print out error message; else modify title
                 if(index > posts.getCurrentSize()){
                     cout << "Your index is out of range! The number of total posts you have is " << posts.getCurrentSize() << endl;
                 }else{
@@ -152,7 +160,7 @@ void displayUserManu(User& user){
 			case 7: {
 				// TO DO: ask the user for the index of the post they want to delete and delete it
                 int index;
-                LinkedBag<Post*>& posts = user.getPosts();
+                LinkedBag<unique_ptr<Post>>& posts = user.getPosts();
                 //ask user for input on index
                 cout << "What is the index of the post you would like to delete? Enter: " << endl;
                 cin >> index;

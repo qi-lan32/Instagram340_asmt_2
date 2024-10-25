@@ -27,7 +27,6 @@ public:
 
     //getters
     const std::string &getTitle() const;
-    const std::chrono::time_point<std::chrono::steady_clock> &getTimeStamp() const;
     int getLikes() const;
     const std::string &getUrl() const;
     int getVideoLength() const;

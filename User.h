@@ -3,6 +3,7 @@
 // TO DO: #include all the standard libraries and your own libraries here
     #include <iostream>
     #include <string>
+    #include <memory>
     #include "LinkedBagDS/LinkedBag.h"
     #include "Post.h"
 
@@ -10,8 +11,7 @@
     class User{
         private:
             std::string username, email, password, bio, profilePicture;
-            LinkedBag<Post*> posts; // in assignment 3 --  use shared ptrs; todo this stores ptrs to new post objs created
-                    // suppose to create new reel/story objs in heap -- using new;
+            LinkedBag<std::unique_ptr<Post>> posts;
 
         public:
             //constructor
@@ -33,7 +33,7 @@
             //getter
             const std::string &getUsername() const;
 
-            LinkedBag<Post *> &getPosts();
+            LinkedBag<std::unique_ptr<Post>> &getPosts();
 
         //setter
             void setPassword(const std::string &password);

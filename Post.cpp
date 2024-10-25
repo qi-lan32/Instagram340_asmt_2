@@ -15,7 +15,7 @@ Post::Post(const std::string& title, const int& videoLength, const std::string& 
 Post::~Post() {};
 
 // When creating a post, you may use this code to set time stamp
-auto time_stamp = std::chrono::steady_clock::now();     //TODO -- CHECK HOW TO USE https://www.freecodecamp.org/news/cpp-std-chrono-api/#:~:text=The%20answer%20is%20that%20the%20members%20of%20struct,s%20%2F%20float%20s.%20They%27re%20not%20strongly%20typed.
+auto time_stamp = std::chrono::steady_clock::now();
 
 // ------------------------------------------------------------------------------
 // Operator overloading implementation
@@ -54,8 +54,4 @@ int Post::getVideoLength() const {
 void Post::setTitle(const string &title) {
     Post::title = title;
     cout << "You have changed your post title to \"" << title << "\"." << endl;
-}
-
-const chrono::time_point<std::chrono::steady_clock> &Post::getTimeStamp() const {
-    return timeStamp;
 }

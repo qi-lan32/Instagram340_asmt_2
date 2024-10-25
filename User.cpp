@@ -26,7 +26,7 @@ void User::displayProfile() const{
 //display all the posts of user
 void User::displayAllPosts() const {
     int numOfPosts = posts.getCurrentSize();
-    Node<Post*> *temp = posts.getHeadPtr();
+    Node<unique_ptr<Post>> *temp = posts.getHeadPtr();
 
     if(numOfPosts == 0){
         cout << "You do not have any posts." << endl;
@@ -51,7 +51,7 @@ void User::displayKthPost(const int& k) const{
 //remove post at the given index
 void User::removePost(const int& index) {
 // Find the post, then remove it from the list.
-    Post* post = posts.findKthItem(index)->getItem();
+    unique_ptr<Post> post = posts.findKthItem(index)->getItem();
     posts.remove(post);
     cout << "Your post has been removed." << endl;
 }
@@ -59,7 +59,7 @@ void User::removePost(const int& index) {
 //modify post at given index -- title only
 void User::modifyPost(const int& index, const string& newTitle){
     // Find the post, then update the title. Print out edit message
-    Post* item =  posts.findKthItem(index)->getItem();
+    unique_ptr<Post> item =  posts.findKthItem(index)->getItem();
     item->setTitle(newTitle);
 }
 
@@ -73,7 +73,7 @@ const string &User::getUsername() const {
     return username;
 }
 
-LinkedBag<Post *> &User::getPosts() {
+LinkedBag<unique_ptr<Post>> &User::getPosts() {
     return posts;
 }
 
@@ -81,17 +81,5 @@ LinkedBag<Post *> &User::getPosts() {
 void User::setPassword(const string &password) {
     this->password = password;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 

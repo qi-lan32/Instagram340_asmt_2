@@ -3,13 +3,14 @@
 #include "LinkedBagDS/LinkedBag.h"
 // TO DO include necessary libraries
 #include "User.h"
+#include <memory>
  
 
 // This class only contains a list of users
 // It should allow clients to add users and retrieve a user from the list
 class Instagram340 {
 	private:
-		LinkedBag<User*> users;
+		LinkedBag<std::unique_ptr<User>> users;
 
 	public:
 		Instagram340();
@@ -18,7 +19,7 @@ class Instagram340 {
 		void createUser(const std::string& username, const std::string& email, const std::string& password,
 						const std::string& bio, const std::string& profilePicture);
 
-		User* getUser(const int& indexK);
+        std::unique_ptr<User> getUser(const int& indexK);
 };
 
 #endif

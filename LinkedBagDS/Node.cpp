@@ -12,17 +12,12 @@ Node<ItemType>::Node() : next(nullptr)
 } // end default constructor
 
 template<class ItemType>
-Node<ItemType>::Node(ItemType *anItem) {
-
-} //end added constructor
-
-template<class ItemType>
 Node<ItemType>::Node(const ItemType& anItem) : item(anItem), next(nullptr)
 {
 } // end constructor
 
 template<class ItemType>
-Node<ItemType>::Node(const ItemType& anItem, Node<ItemType>* nextNodePtr) :
+Node<ItemType>::Node(const ItemType& anItem, Node<std::unique_ptr<ItemType>> nextNodePtr) :
                 item(anItem), next(nextNodePtr)
 {
 } // end constructor
@@ -34,7 +29,7 @@ void Node<ItemType>::setItem(const ItemType& anItem)
 } // end setItem
 
 template<class ItemType>
-void Node<ItemType>::setNext(Node<ItemType>* nextNodePtr)
+void Node<ItemType>::setNext(Node<std::unique_ptr<ItemType>> nextNodePtr)
 {
    next = nextNodePtr;
 } // end setNext
@@ -46,7 +41,7 @@ ItemType Node<ItemType>::getItem() const
 } // end getItem
 
 template<class ItemType>
-Node<ItemType>* Node<ItemType>::getNext() const
+Node<std::unique_ptr<ItemType>> Node<ItemType>::getNext() const
 {
    return next;
 } // end getNext

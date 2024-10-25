@@ -6,22 +6,23 @@
 #ifndef NODE_
 #define NODE_
 
+#include <memory>
+
 template<class ItemType>
 class Node
 {
 private:
    ItemType        item; // A data item
-   Node<ItemType>* next; // Pointer to next node
+   Node<std::unique_ptr<ItemType>> next; // Pointer to next node
    
 public:
    Node();
-   Node(ItemType* anItem); //added constructor
    Node(const ItemType& anItem);
-   Node(const ItemType& anItem, Node<ItemType>* nextNodePtr);
+   Node(const ItemType& anItem, Node<std::unique_ptr<ItemType>> nextNodePtr);
    void setItem(const ItemType& anItem);
-   void setNext(Node<ItemType>* nextNodePtr);
+   void setNext(Node<std::unique_ptr<ItemType>> nextNodePtr);
    ItemType getItem() const ;
-   Node<ItemType>* getNext() const ;
+   Node<std::unique_ptr<ItemType>> getNext() const ;
 };
 
 // end Node
