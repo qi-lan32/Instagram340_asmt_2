@@ -8,7 +8,7 @@
 ---
 ### Issues:
 - did not understand ptr and how it worked; did not understand that the lists were suppose to store ptrs to the memory-allocated obj (difference b/t using *, &, or none)
-- working with "<chrono>" library; still don't quite understand how it works, but methods were provided
+- working with "chrono" library; still don't quite understand how it works, but methods were provided
 
 ---
 
