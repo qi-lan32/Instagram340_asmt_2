@@ -11,7 +11,7 @@
     class User{
         private:
             std::string username, email, password, bio, profilePicture;
-            LinkedBag<std::unique_ptr<Post>> posts;
+            LinkedBag<Post> posts;
 
         public:
             //constructor
@@ -33,7 +33,7 @@
             //getter
             const std::string &getUsername() const;
 
-            LinkedBag<std::unique_ptr<Post>> &getPosts();
+            LinkedBag<Post> &getPosts();
 
         //setter
             void setPassword(const std::string &password);

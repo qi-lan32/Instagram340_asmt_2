@@ -140,7 +140,7 @@ void displayUserManu(User& user){
                 //TO DO: ask user for index of post they want to modify and the new title
                 int index;
                 string newTitle;
-                LinkedBag<unique_ptr<Post>>& posts = user.getPosts();
+                LinkedBag<Post>& posts = user.getPosts();
 				//ask user for input on index and title
                 cout << "What is the index of the post you would like to modify? Enter: " << endl;
                 cin >> index;
@@ -160,7 +160,7 @@ void displayUserManu(User& user){
 			case 7: {
 				// TO DO: ask the user for the index of the post they want to delete and delete it
                 int index;
-                LinkedBag<unique_ptr<Post>>& posts = user.getPosts();
+                LinkedBag<Post>& posts = user.getPosts();
                 //ask user for input on index
                 cout << "What is the index of the post you would like to delete? Enter: " << endl;
                 cin >> index;

@@ -73,7 +73,7 @@ const string &User::getUsername() const {
     return username;
 }
 
-LinkedBag<unique_ptr<Post>> &User::getPosts() {
+LinkedBag<Post> &User::getPosts() {
     return posts;
 }
 
