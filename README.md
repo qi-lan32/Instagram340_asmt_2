@@ -8,8 +8,9 @@
 ---
 ### Issues:
 - did not understand ptr and how it worked; did not understand that the lists were suppose to store ptrs to the memory-allocated obj (difference b/t using *, &, or none)
+> I thought that the lists were supoose to store the objects themselves. 
 - working with "chrono" library; still don't quite understand how it works, but methods were provided
-
+> The functions and code to calculate the expiration time and time stamp were provided.
 ---
 
 ... onto asmt 3 upgrade and implementation 
